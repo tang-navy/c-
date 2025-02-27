@@ -1,32 +1,32 @@
 
 
-//Ĭ������£����һ��С��������ʾ6λ��Ч���֣�
-//�������ݣ�������short,����int��������long����������long long;
-//ʵ�����ݣ�float,double;
-//��ĳ���ֳ��������ֳ��ܱ�ʾ�����ֵ�����Ը����Ļ����ֳ���ʾ�������֣�
-// Ȼ������λ�ضϣ�
+//默认情况下，输出一个小数，会显示6位有效数字；
+//整型数据：短整型short,整型int，长整型long，长长整型long long;
+//实型数据：float,double;
+//当某数字超出机器字长能表示的最大值，得以更长的机器字长表示出该数字，
+// 然后保留低位截断；
 
 
-//�ַ������ݣ�
-// �ڴ��д�ŵ��Ƕ�Ӧ��ASCII�룬�����ַ�������
-//�ַ��ͱ�����������
-// ��ֵҪ�õ����ţ��ҵ�������ֻ����һ���ַ���������˫���ţ�
-//��Сд��ĸ֮�����32
-//ASCII�����0-31�ǿ����ַ������ڿ��ƴ�ӡ�ҵ���Χ�豸��һ�㲻��ʾ����Ļ��
-//32-126��������������ҵ����ַ������鿴���ӡ�ĵ��ͻ���֣�
+//字符型数据：
+// 内存中存放的是对应的ASCII码，而非字符本身；
+//字符型变量常见错误：
+// 赋值要用单引号，且单引号中只能有一个字符，不能用双引号；
+//大小写字母之间相差32
+//ASCII码表：0-31是控制字符，用于控制打印家等外围设备，一般不显示到屏幕上
+//32-126分配给键盘上能找到的字符，当查看或打印文档就会出现；
 // 
-//ת���ַ������ڱ�ʾһЩ������ʾ������ASCII�ַ�
-//�����ӡһ��",���cout<<""",����һ��",ֻ��cout<<"\""
+//转义字符：用于表示一些不能显示出来的ASCII字符
+//例如打印一个",如果cout<<""",则多出一个",只能cout<<"\""
 
 
-//�ַ����ͣ�
-//1.c����ַ����������ַ�����+�ַ���ֹ����char str[]="�ַ�������"��
-//2.c++���string ������="�ַ�������"��
-//�ַ�����ֵʱҪ��˫���ţ�
+//字符串型：
+//1.c风格字符串：本质字符数组+字符终止符，char str[]="字符串常量"；
+//2.c++风格：string 变量名="字符串常量"；
+//字符串赋值时要用双引号；
 
 
 
-//ת��Ϊ��д��ĸ������
+//转化为大写字母函数：
 void toupper_self_define(char& ch) {
 	if ((int)ch >= 97 && (int)ch <= 122) {
 		ch -= 32;
@@ -42,7 +42,7 @@ void toupper_self_define(char& ch) {
 
 using namespace std;
 int main3() {
-	//���ͺ�ʵ�ͣ�
+	//整型和实型：
 	float f1 = 3.1415926;//4B
 	double d1 = 3.1415926;//8B
 	float f2 = 3.14E-2;
@@ -52,39 +52,39 @@ int main3() {
 	cout << "f2=" << f2 << endl;
 
 
-	//�ַ���ת���ַ���
+	//字符和转义字符：
 	char ch = 'a';
 	char ch1 = 'z';
 	char ch2 = 'b';
-	cout << "a��ASCII��Ϊ��" << (int)ch << endl;
-	cout << "z��ASCII��Ϊ��" << (int)ch1 << endl;
+	cout << "a的ASCII码为：" << (int)ch << endl;
+	cout << "z的ASCII码为：" << (int)ch1 << endl;
 	toupper_self_define(ch2);
-	cout << "ch2��д��Ϊ��" << ch2 << endl;
+	cout << "ch2大写后为：" << ch2 << endl;
 	cout << ch<<"\a" << endl;
 	cout << "\"" << endl;
 	cout << "\?" << endl;
 	cout << "?" << endl;
-	cout << "\\"<< endl;//������һ���ܱ�ʾҪ���һ����������ˣ�
-	cout << "aaaa\tbbb" << endl;//һ��ˮƽ�Ʊ���\t��չ�8��λ��,
-	//����Ѿ�8��a�ˣ�����ں��油����8���ո�������bbb;
+	cout << "\\"<< endl;//遇到第一个杠表示要输出一个特殊符号了；
+	cout << "aaaa\tbbb" << endl;//一个水平制表符\t会凑够8个位置,
+	//如果已经8个a了，则会在后面补上上8个空格后再输出bbb;
 	cout << "aaaaaaaaa\tbbb" << endl;
 
 
-	//�ַ����ͣ�
+	//字符串型：
 	char str[] = "hello world";
 	cout <<"str="<< str << endl;
 	string str1="hello kitty";
 	cout << "str1="<<str1 << endl;
 	//char str2[5] = "hello";
-	//����const char[6]����ֵ"hello"�������ڳ�ʼ��char[5]���͵�ʵ�壻
-	scanf("%s", str);//����fuck you man,��ɨ�赽�ո�ͻ�ֹͣ��
-	//scanf("%s", str1);����
-	cout << "�޸ĺ��str="<<str << endl;//str=fuck
+	//错误！const char[6]类型值"hello"不能用于初始化char[5]类型的实体；
+	scanf("%s", str);//输入fuck you man,但扫描到空格就会停止；
+	//scanf("%s", str1);错误
+	cout << "修改后的str="<<str << endl;//str=fuck
 	scanf("%s", str);
-	cout << "�޸ĺ��str=" << str << endl;//str=you
+	cout << "修改后的str=" << str << endl;//str=you
 	
 
-	system("pause");//����cin.get();
+	system("pause");//或者cin.get();
 	return 0;
 }
 
