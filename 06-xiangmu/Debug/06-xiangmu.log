@@ -1,6 +1,0 @@
-﻿  WorkerManager.cpp
-D:\coding\黑马程序课程\06-xiangmu\WorkerManager.cpp(85,3): warning C4102: “defalut”: 未引用的标签
-D:\coding\黑马程序课程\06-xiangmu\WorkerManager.cpp(98,7): warning C4101: “ch”: 未引用的局部变量
-  main.cpp
-  正在生成代码...
-  06-xiangmu.vcxproj -> D:\coding\黑马程序课程\Debug\06-职工管理系统（测试）.exe
