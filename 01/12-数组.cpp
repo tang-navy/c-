@@ -1,51 +1,52 @@
-//��������ʵҲ�൱���ڴ��ַ�ı��������ڱ�����鿪ʼ��λ�ã�
-//ע��������һ��ȷ����ϵͳ���Զ�������ռ���׵�ַ����������������һ������
-//����������ֵ��
-//������arr����һ��ָ�볣�������ǿ�������sizeof(arr)�ж������ܹ���С��
-//��int* p=arr;sizeof(p)=ϵͳ��ַλ����
-//һά�����Ԫ�ؾ���һ��һ�����ݶ��󣬶�ά���ݵ�Ԫ����һ��һ����һά���飻
-//��ά����int array[3][4]:array��һ������ָ�룻
-// array[0]����ά����ĵ�һ��Ԫ�أ�������һ��һά������
-//��ά�����׵�ַarray��һά�����׵�ַarray[0]����һ��Ԫ���׵�ַ&array[0][0]��ͬ��
-
+//数组名其实也相当于内存地址的别名，用于标记数组开始的位置；
+//注意数组名一旦确定，系统会自动将分配空间的首地址赋给它，数组名是一个常量
+//不能再做赋值；
+//数组名arr：是一个指针常量，但是可以利用sizeof(arr)判断数组总共大小；
+//如int* p=arr;sizeof(p)=系统地址位数；
+//一维数组的元素就是一个一个数据对象，二维数据的元素是一个一个的一维数组；
+//二维数组int array[3][4]:array是一个数组指针；
+// array[0]即二维数组的第一个元素，不就是一个一维数组吗；
+//二维数组首地址array，一维数组首地址array[0]，第一个元素首地址&array[0][0]相同；
+//对于一维数组arr[4]:arr代表一维数组第一个元素arr[0]的地址，类型为int*
+//对于二维数组arr[3][4]:arr代表二维数组第一个元素，及及一行arr[0]的地址，类型为(int*) [4]
 #include<iostream>
 using namespace std;
 int main12() {
 
-	//һά���飺
+	//一维数组：
 	int arr[] = { 1,2,3,4,5 };
-	//int arr1[5] = arr[5];������һ���������һ�����鸳ֵ��
+	//int arr1[5] = arr[5];不能用一个数组对另一个数组赋值；
 	for (int num : arr) {
 		cout << num << endl;
 	}
-	cout << "arr�����׵�ַΪ��" << (long long)arr << endl;//Ĭ�ϵ�ַ��16���ƣ�
-	cout << "arr[0]�����׵�ַΪ��" << (long long)&arr[0] << endl;
-	cout << "arr[1]�����׵�ַΪ��" << (long long)&arr[1] << endl;
+	cout << "arr数组首地址为：" << (long long)arr << endl;//默认地址是16进制；
+	cout << "arr[0]数组首地址为：" << (long long)&arr[0] << endl;
+	cout << "arr[1]数组首地址为：" << (long long)&arr[1] << endl;
 
-	cout <<"����ռ���ڴ棺"<< sizeof(arr)<<"B" << endl;
+	cout <<"数组占用内存："<< sizeof(arr)<<"B" << endl;
 	int* p = arr;
-	cout << "ָ��pռ���ڴ棺" << sizeof(p) << "B" << endl;
-	//��ά���飺ÿ��Ԫ�ض��൱��һ��һά���飻
-	//��������ָ����Ӧһά�����ָ�볣��������ָ�룩
+	cout << "指针p占用内存：" << sizeof(p) << "B" << endl;
+	//二维数组：每个元素都相当于一个一维数组；
+	//数组名是指向相应一维数组的指针常量（数组指针）
 	int array[3][4] = {
 		{1,2,3,4},
 		{5,6,7,8},
 		{9,10,11,12}
 	};
-	//int* p1 = array;�������Ͳ�ƥ�䣻
-	int(*p1)[4] = array;//p1Ϊָ�����鳤��Ϊ4�������ָ�룻
-	for (int i = 0; i < 12; i++) {//˵����ά�������ڴ���Ҳ�ǡ�һά��������ţ�
+	//int* p1 = array;错误！类型不匹配；
+	int(*p1)[4] = array;//p1为指向数组长度为4的数组的指针；
+	for (int i = 0; i < 12; i++) {//说明二维数组在内存中也是“一维”连续存放；
 		cout << *((*p1) + i) << "\t";
 	}
 	cout << endl;
 
 	int* p2 = *array;
-	for (int i = 0; i < 12; i++) {//˵����ά�������ڴ���Ҳ�ǡ�һά��������ţ�
+	for (int i = 0; i < 12; i++) {//说明二维数组在内存中也是“一维”连续存放；
 		cout << *(p2 + i) << "\t";
 	}
 	cout << endl;
 
-	cout << "array��ά����ռ�ÿռ䣺" << sizeof(array) << "B" << endl;
+	cout << "array二维数组占用空间：" << sizeof(array) << "B" << endl;
 
 	system("pause");
 	return 0;
